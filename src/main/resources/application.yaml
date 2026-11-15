@@ -1,0 +1,17 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: gym-social
+  datasource:
+    url: jdbc:postgresql://localhost:5432/${POSTGRES_DB:gym}
+    username: ${POSTGRES_USER:gym}
+    password: ${POSTGRES_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: validate        # Hibernate samo PROVERAVA šemu; bazu menja isključivo Flyway
+    open-in-view: false         # isključuje lenje učitavanje u kontroleru, pa N+1 ne može da se sakrije
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true

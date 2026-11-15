@@ -1,0 +1,15 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16    # PostgreSQL 16 sa pgvector-om, spreman za recommender
+    container_name: gym-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - gym-data:/var/lib/postgresql/data   # podaci ostaju i kad ugasiš kontejner
+
+volumes:
+  gym-data:
