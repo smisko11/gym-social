@@ -4,7 +4,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import smisko11.gym_social.auth.dto.LoginRequest;
 import smisko11.gym_social.auth.dto.RegisterRequest;
+import smisko11.gym_social.auth.dto.TokenResponse;
 import smisko11.gym_social.user.dto.UserResponse;
 
 @RestController
@@ -18,5 +20,10 @@ public class AuthController {
     @ResponseStatus(HttpStatus.CREATED)
     public UserResponse register(@Valid @RequestBody RegisterRequest request) {
         return authService.register(request);
+    }
+
+    @PostMapping("/login")
+    public TokenResponse login(@Valid @RequestBody LoginRequest request) {
+        return authService.login(request);
     }
 }
